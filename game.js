@@ -36,7 +36,7 @@ function(round, team1, team2){
   var turnoverWeight = 5.5;
   var reboundingWeight = 4.5;
   var freeThrowWeight = 2.5;
-  var stealsWeight = 0;
+  var stealsWeight = 2;
   var seedWeight = 0;
   var pppWeight = 0;
 
@@ -60,35 +60,37 @@ function(round, team1, team2){
   var team2StealPerc = 100 * (team2.total_steals / team1Poss); // scewed, because we have no data for opponents
 
 
-  var team1Value = (team1OffEff * shootingEffWeight);
-  team1Value += (team1.rpi * 100 * rpiWeight);
-  team1Value += (team1.win_pct * 100 * winPercWeight);
-  team1Value -= (team1TurnoverPerc * turnoverWeight);
-  team1Value += (team1Rebounding * reboundingWeight);
-  team1Value += (team1.free_throw_pct * freeThrowWeight);
+  var team1Total = (team1OffEff * shootingEffWeight);
+  team1Total += (team1.rpi * 100 * rpiWeight);
+  team1Total += (team1.win_pct * 100 * winPercWeight);
+  team1Total -= (team1TurnoverPerc * turnoverWeight);
+  team1Total += (team1Rebounding * reboundingWeight);
+  team1Total += (team1.free_throw_pct * freeThrowWeight);
+  team1Total += (team1StealPerc * stealsWeight);
   
-  var team2Value = (team2OffEff * shootingEffWeight);
-  team2Value += (team2.rpi * 100 * rpiWeight);
-  team2Value += (team2.win_pct * 100 * winPercWeight);
-  team2Value -= (team2TurnoverPerc * turnoverWeight);
-  team2Value += (team2Rebounding * reboundingWeight);
-  team2Value += (team2.free_throw_pct * freeThrowWeight);
+  var team2Total = (team2OffEff * shootingEffWeight);
+  team2Total += (team2.rpi * 100 * rpiWeight);
+  team2Total += (team2.win_pct * 100 * winPercWeight);
+  team2Total -= (team2TurnoverPerc * turnoverWeight);
+  team2Total += (team2Rebounding * reboundingWeight);
+  team2Total += (team2.free_throw_pct * freeThrowWeight);
+  team2Total += (team2StealPerc * stealsWeight);
  
 
   // For debug 
   console.log('Team1: ' + team1.name + ' offensive: ' + team1OffEff + ' turnover: ' + team1TurnoverPerc +
-              ' rebounding: ' + team1Rebounding + ' steal: ' + team1StealPerc + ' total: ' + team1Value);
+              ' rebounding: ' + team1Rebounding + ' steal: ' + team1StealPerc + ' total: ' + team1Total);
   console.log('Team2: ' + team2.name + ' offensive: ' + team2OffEff + ' turnover: ' + team2TurnoverPerc + 
-              ' rebounding: ' + team2Rebounding +' steal: ' + team2StealPerc + ' total: ' + team2Value);
+              ' rebounding: ' + team2Rebounding +' steal: ' + team2StealPerc + ' total: ' + team2Total);
  
-  //console.log('Round ' + game.round + ' team1: ' + team1.name + ' ' + team1Value);
-  //console.log('Round ' + game.round + ' team2: ' + team2.name + ' ' + team2Value);
+  //console.log('Round ' + game.round + ' team1: ' + team1.name + ' ' + team1Total);
+  //console.log('Round ' + game.round + ' team2: ' + team2.name + ' ' + team2Total);
 
 
   // Find winner
-  if(team1Value > team2Value)
+  if(team1Total > team2Total)
     team1.winsGame();
-  else if(team1Value < team2Value)
+  else if(team1Total < team2Total)
     team2.winsGame();
   else { // score is even
    
