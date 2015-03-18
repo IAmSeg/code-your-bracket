@@ -22,37 +22,59 @@ function(round, team1, team2){
 
 
   // Weightings for stats
-  // -----------------------------
+  // Based on Dean Oliver's "Four Factors" 
+  // --------------------------------------
   // Shooting Efficiency - 10
   // RPI - 8
   // Win % - 7
   // Turnover Rate - 5.5
   // Rebounding - 4.5
   // Free Throw Conversion - 2.5
+  var shootingEffWeight = 10;
+  var rpiWeight = 8;
+  var winPercWeight = 7;
+  var turnoverWeight = 5.5;
+  var reboundingWeight = 4.5;
+  var freeThrowWeight = 2.5;
+  var stealsWeight = 0;
+  var seedWeight = 0;
+  var pppWeight = 0;
 
   // Calculate Various Stats Needed 
-  // var team1TotalPoints = (3 * team1.threes_made) + (2 * team1.field_goals_made) + (1 * team1.free_throws_made);
+  var team1TotalPoints = (3 * team1.threes_made) + (2 * team1.field_goals_made) + (1 * team1.free_throws_made);
   var team1Poss = team1.field_goals_attempted - team1.off_reb + team1.turnovers + (.4 * team1.free_throws_attempted);
-  var team1Rebounding = 100 * team1.off_reb / (team1.off_reb + team2.def_reb);
+  var team1Rebounding = 100 * team1.off_reb / (team1.off_reb + team2.def_reb); // scewed, because we have no data for opponents
+  var team1PossPerGame = team1TotalPoints / team1Poss;
 
-  // var team2TotalPoints = (3 * team2.threes_made) + (2 * team2.field_goals_made) + (1 * team2.free_throws_made);
+  var team2TotalPoints = (3 * team2.threes_made) + (2 * team2.field_goals_made) + (1 * team2.free_throws_made);
   var team2Poss = team2.field_goals_attempted - team2.off_reb + team2.turnovers + (.4 * team2.free_throws_attempted); 
-  var team2Rebounding = 100 * team2.off_reb / (team2.off_reb + team1.def_reb);
+  var team2Rebounding = 100 * team2.off_reb / (team2.off_reb + team1.def_reb); // scewed, because we have no data for opponents
+  var team2PossPerGame = team2TotalPoints / team2Poss; 
 
   var team1OffEff = 100 * (team1.field_goals_made + (.5 * team1.threes_made)) / team1.field_goals_attempted;
   var team1TurnoverPerc = 100 * (team1.turnovers / team1Poss);
-  var team1StealPerc = 100 * (team1.total_steals / team2Poss);
+  var team1StealPerc = 100 * (team1.total_steals / team2Poss); // scewed, because we have no data for opponents
 
   var team2OffEff = 100 * (team2.field_goals_made + (.5 * team2.threes_made)) / team2.field_goals_attempted;
   var team2TurnoverPerc = 100 * (team2.turnovers / team2Poss);
-  var team2StealPerc = 100 * (team2.total_steals / team1Poss);
+  var team2StealPerc = 100 * (team2.total_steals / team1Poss); // scewed, because we have no data for opponents
 
 
-  var team1Value = (team1OffEff * 10) + (team1.rpi * 100 * 8) + (team1.win_pct * 100 * 7) - 
-                   (team1TurnoverPerc * 5.5) + (team1Rebounding * 4.5) + (team1.free_throw_pct * 2.5);
-  var team2Value = (team2OffEff * 10) + (team2.rpi * 100 * 8) + (team2.win_pct * 100 * 7) - 
-                   (team2TurnoverPerc * 5.5) + (team2Rebounding * 4.5) + (team2.free_throw_pct * 2.5); 
+  var team1Value = (team1OffEff * shootingEffWeight);
+  team1Value += (team1.rpi * 100 * rpiWeight);
+  team1Value += (team1.win_pct * 100 * winPercWeight);
+  team1Value -= (team1TurnoverPerc * turnoverWeight);
+  team1Value += (team1Rebounding * reboundingWeight);
+  team1Value += (team1.free_throw_pct * freeThrowWeight);
+  
+  var team2Value = (team2OffEff * shootingEffWeight);
+  team2Value += (team2.rpi * 100 * rpiWeight);
+  team2Value += (team2.win_pct * 100 * winPercWeight);
+  team2Value -= (team2TurnoverPerc * turnoverWeight);
+  team2Value += (team2Rebounding * reboundingWeight);
+  team2Value += (team2.free_throw_pct * freeThrowWeight);
  
+
   // For debug 
   console.log('Team1: ' + team1.name + ' offensive: ' + team1OffEff + ' turnover: ' + team1TurnoverPerc +
               ' rebounding: ' + team1Rebounding + ' steal: ' + team1StealPerc + ' total: ' + team1Value);
