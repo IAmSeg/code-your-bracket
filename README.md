@@ -18,7 +18,7 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 * Rebounding Efficiency = OffReb / (OffReb + OppDefReb)
 
 
-### Weightings for stats
+### Weightings for Stats
 -----------------------------
 * Shooting Efficiency - 10
 * RPI - 6
@@ -27,3 +27,10 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 * Rebounding - 4.5
 * Free Throw Conversion - 2.5
 * Steal % - 2
+
+
+#### To-Do
+-----------------------------
+* Find good weighting for rpi and win %.
+* Add blocks to overall score.
+* Consider adding seed weighting. 
