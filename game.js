@@ -18,7 +18,7 @@ function(round, team1, team2){
   // Effective Field Goal % (Offensive Efficiency) = (FG + .5 * 3FG) / FGA 
   // Turnover % = 100 * (Turnovers / Possessions)
   // Steal % = 100 * (Steals / OppPossesions)
-  // Rebounding Efficiency = OffReb / (OffReb - OppDefReb)
+  // Rebounding Efficiency = OffReb / (OffReb + OppDefReb)
 
 
   // Weightings for stats

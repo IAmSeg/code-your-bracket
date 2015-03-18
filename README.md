@@ -17,7 +17,7 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 * Effective Field Goal % (Offensive Efficiency) = (FG + .5 * 3FG) / FGA 
 * Turnover % = 100 * (Turnovers / Possessions)
 * Steal % = 100 * (Steals / OppPossesions)
-* Rebounding Efficiency = OffReb / (OffReb - OppDefReb)
+* Rebounding Efficiency = OffReb / (OffReb + OppDefReb)
 
 
 ### Weightings for stats
