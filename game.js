@@ -37,8 +37,7 @@ function(round, team1, team2){
   var reboundingWeight = 4.5;
   var freeThrowWeight = 2.5;
   var stealsWeight = 2;
-  var seedWeight = 0;
-  var pppWeight = 0;
+  var blocksWeight = 2; 
 
   // Calculate Various Stats Needed 
   var team1TotalPoints = (3 * team1.threes_made) + (2 * team1.field_goals_made) + (1 * team1.free_throws_made);
@@ -54,11 +53,12 @@ function(round, team1, team2){
   var team1OffEff = 100 * (team1.field_goals_made + (.5 * team1.threes_made)) / team1.field_goals_attempted;
   var team1TurnoverPerc = 100 * (team1.turnovers / team1Poss);
   var team1StealPerc = 100 * (team1.total_steals / team2Poss); // scewed, because we have no data for opponents
+  var team1Blocks = 100 * (team1.total_blocks / team2Poss); // scewed, because we have no data for opponents
 
   var team2OffEff = 100 * (team2.field_goals_made + (.5 * team2.threes_made)) / team2.field_goals_attempted;
   var team2TurnoverPerc = 100 * (team2.turnovers / team2Poss);
   var team2StealPerc = 100 * (team2.total_steals / team1Poss); // scewed, because we have no data for opponents
-
+  var team2Blocks = 100 * (team2.total_blocks / team1Poss); // scewed, because we have no data for opponents
 
   var team1Total = (team1OffEff * shootingEffWeight);
   team1Total += (team1.rpi * 100 * rpiWeight);
@@ -67,7 +67,8 @@ function(round, team1, team2){
   team1Total += (team1Rebounding * reboundingWeight);
   team1Total += (team1.free_throw_pct * freeThrowWeight);
   team1Total += (team1StealPerc * stealsWeight);
-  
+  team1Total += (team1Blocks * blocksWeight);
+
   var team2Total = (team2OffEff * shootingEffWeight);
   team2Total += (team2.rpi * 100 * rpiWeight);
   team2Total += (team2.win_pct * 100 * winPercWeight);
@@ -75,13 +76,13 @@ function(round, team1, team2){
   team2Total += (team2Rebounding * reboundingWeight);
   team2Total += (team2.free_throw_pct * freeThrowWeight);
   team2Total += (team2StealPerc * stealsWeight);
- 
+  team2Total += (team2Blocks * blocksWeight); 
 
   // For debug 
-  console.log('Team1: ' + team1.name + ' offensive: ' + team1OffEff + ' turnover: ' + team1TurnoverPerc +
-              ' rebounding: ' + team1Rebounding + ' steal: ' + team1StealPerc + ' total: ' + team1Total);
-  console.log('Team2: ' + team2.name + ' offensive: ' + team2OffEff + ' turnover: ' + team2TurnoverPerc + 
-              ' rebounding: ' + team2Rebounding +' steal: ' + team2StealPerc + ' total: ' + team2Total);
+  console.log('Team1: ' + team1.name + ' offensive: ' + team1OffEff + ' turnover: ' + team1TurnoverPerc + ' ft: ' + team1.free_throw_pct + 
+              ' rebounding: ' + team1Rebounding + ' steal: ' + team1StealPerc + ' block: ' + team1Blocks + ' total: ' + team1Total);
+  console.log('Team2: ' + team2.name + ' offensive: ' + team2OffEff + ' turnover: ' + team2TurnoverPerc + ' ft: ' + team2.free_throw_pct +  
+              ' rebounding: ' + team2Rebounding +' steal: ' + team2StealPerc + ' block: ' + team2Blocks + ' total: ' + team2Total);
  
   //console.log('Round ' + game.round + ' team1: ' + team1.name + ' ' + team1Total);
   //console.log('Round ' + game.round + ' team2: ' + team2.name + ' ' + team2Total);
