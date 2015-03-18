@@ -21,8 +21,9 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 ### Weightings for stats
 -----------------------------
 * Shooting Efficiency - 10
-* RPI - 8
-* Win % - 7
+* RPI - 6
+* Win % - 6
 * Turnover Rate - 5.5
 * Rebounding - 4.5
 * Free Throw Conversion - 2.5
+* Steal % - 2
