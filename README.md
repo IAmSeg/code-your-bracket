@@ -1,13 +1,16 @@
 # CodeYourBracket
 
 Algorithm to pick the NCAA March Madness Bracket using the [Code Your Bracket] environment (https://codersbracket.com).
-  
+Will Johnson
+3-17-2015
+
 This algorithm will calculate a team's offensive efficiency using widley accepted formulas.
-It will also calculate turnover %, steal %, and rebound %.
+It will also calculate predicted turnover %, steal %, block %, and rebound %.
 There is almost no way to calculate defensive efficiency of a team due to having no data 
-  about a team's opponents.
+  about a team's opponents, so we will try to predict it with the given data.
 Other factors, such as randomness, seed position, rank will be taken into account later, based
   on my personal beliefs and feelings as a sports fan. 
+
   
 ### Various Stats 
 ----------------------------------------------------------------------
@@ -17,20 +20,14 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 * Steal % = 100 * (Steals / OppPossesions)
 * Rebounding Efficiency = OffReb / (OffReb + OppDefReb)
 
-
-### Weightings for Stats
------------------------------
-* Shooting Efficiency - 10
-* RPI - 6
-* Win % - 6
-* Turnover Rate - 5.5
-* Rebounding - 4.5
-* Free Throw Conversion - 2.5
-* Steal % - 2
-
-
-#### To-Do
------------------------------
-* Find good weighting for rpi and win %.
-* Add blocks to overall score.
-* Consider adding seed weighting. 
+### Weightings for stats
+--------------------------------------
+Based on Dean Oliver's "Four Factors"
+* Shooting Efficiency - 40 
+* RPI - 35 
+* Win % - 35  
+* Turnover Rate - 25 
+* Rebounding - 20 
+* Free Throw Conversion - 15 
+* Steal % - 15 
+* Block % - 15 
