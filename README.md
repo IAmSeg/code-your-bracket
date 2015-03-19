@@ -20,7 +20,7 @@ Other factors, such as randomness, seed position, rank will be taken into accoun
 * Steal % = 100 * (Steals / OppPossesions)
 * Rebounding Efficiency = OffReb / (OffReb + OppDefReb)
 
-### Weightings for stats
+### Weightings for Stats
 --------------------------------------
 Based on Dean Oliver's "Four Factors"
 * Shooting Efficiency - 40 
