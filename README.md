@@ -1,6 +1,6 @@
-# CodeYourBracket
+# Code You rBracket
 
-Algorithm to pick the NCAA March Madness Bracket using the [Code Your Bracket] environment (https://codersbracket.com).
+Algorithm to pick the NCAA March Madness Bracket using the [Code Your Bracket environment](https://codersbracket.com).
 
 This algorithm will calculate a team's offensive efficiency using widley accepted formulas.
 It will also calculate predicted turnover %, steal %, block %, and rebound %.
