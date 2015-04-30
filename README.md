@@ -1,4 +1,4 @@
-# Code You rBracket
+# Code Your Bracket
 
 Algorithm to pick the NCAA March Madness Bracket using the [Code Your Bracket environment](https://codersbracket.com).
 
