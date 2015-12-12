@@ -29,3 +29,9 @@ Based on Dean Oliver's "Four Factors"
 * Free Throw Conversion - 15 
 * Steal % - 15 
 * Block % - 15 
+
+### Results
+-------------
+The final bracket and results from the tournament appear in the image below.
+
+![bracket](finalBracket2015.PNG)
