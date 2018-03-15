@@ -36,6 +36,6 @@ The 2015 final bracket and results from the tournament appear in the image below
 
 ![bracket](finalBracket2015.PNG)
 
-The 2015 final bracket and results from the tournament appear in the image below.
+The 2016 final bracket and results from the tournament appear in the image below.
 
 ![bracket](2016-bracket.PNG)
